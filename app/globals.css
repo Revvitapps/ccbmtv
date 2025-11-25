@@ -537,6 +537,10 @@ textarea:focus {
   margin-top: 4px;
 }
 
+.legal-card ul {
+  gap: 10px;
+}
+
 .button-primary {
   background: linear-gradient(130deg, #ffd15c 0%, #ffca22 100%);
   color: var(--navy);

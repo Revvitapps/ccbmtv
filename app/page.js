@@ -343,6 +343,35 @@ export default function Home() {
           </form>
         </section>
 
+        <section className="card legal-card" data-reveal>
+          <div className="eyebrow">What you’re signing</div>
+          <h2>Acceptance terms (read before signing)</h2>
+          <ul>
+            <li>
+              <strong>Scope:</strong> Phase 1 live page on your domain with CCBM/Revvit branding, SEO + GEO (LLM model)
+              structure, donor/sponsor story with rate card space, ad-ready placements (VAST tags, Google Ads/AdSense
+              hooks), and previews for live player, PWA (“mini OTT”), and promo microsite.
+            </li>
+            <li>
+              <strong>Pricing:</strong> One-Time Setup — $10,000; Monthly Retainer — $1,500 (hosting, monitoring,
+              maintenance, copy/pricing updates, light SEO/GEO tuning, guidance on donation provider, live streaming,
+              PWA/OTT timing).
+            </li>
+            <li>
+              <strong>Timeline:</strong> Week 1 story/ROI alignment + ad/VAST placement mapping; Week 2 publish and wire
+              tracking; Week 3+ turn on VAST/Ads/AdSense and donor/sponsor funnels, then schedule live player/PWA build.
+            </li>
+            <li>
+              <strong>NDA:</strong> Mutual confidentiality for business/data for 2 years. Revvit acts as an independent
+              contractor; governing law: North Carolina.
+            </li>
+            <li>
+              <strong>Acceptance:</strong> Submitting the form emails a PDF summary to you and Revvit and serves as Phase
+              1 acceptance unless you note exceptions in “Notes.”
+            </li>
+          </ul>
+        </section>
+
         <section className="cta-footer card" id="ready" data-reveal>
           <div className="eyebrow">Ready to begin?</div>
           <h2>Once you sign off on this page, we treat it as the official scope of work for Phase 1.</h2>
