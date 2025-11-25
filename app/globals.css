@@ -465,10 +465,15 @@ textarea {
   padding: 12px 12px;
   border-radius: 12px;
   border: 1px solid var(--border);
-  background: #f8fbff;
+  background: #ffffff;
   font-family: inherit;
   font-size: 14px;
   color: var(--ink);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(15, 26, 47, 0.4);
 }
 
 textarea {
