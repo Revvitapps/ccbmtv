@@ -240,6 +240,10 @@ ul {
   color: var(--muted);
 }
 
+.small {
+  font-size: 13px;
+}
+
 li {
   line-height: 1.55;
 }

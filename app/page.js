@@ -299,6 +299,11 @@ export default function Home() {
           <p className="muted">
             Fill this out to send acceptance to CCBM + Revvit. You and our team will both receive a copy via email.
           </p>
+          <p className="muted small">
+            Legal: By submitting you agree to the Phase 1 scope, pricing, and timeline on this page, and acknowledge the
+            mutual NDA (confidentiality on business/data for 2 years) and that Revvit acts as an independent contractor.
+            Governing law: North Carolina.
+          </p>
           <form className="sign-form" onSubmit={handleSubmit}>
             <div className="form-grid">
               <label>
