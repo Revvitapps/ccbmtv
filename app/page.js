@@ -14,6 +14,7 @@ export default function Home() {
     agreed: false,
   });
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
+  const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
     const revealElements = Array.from(document.querySelectorAll('[data-reveal]'));
@@ -46,17 +47,26 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-      if (!res.ok) throw new Error('Request failed');
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        const message = data?.error || 'Request failed';
+        throw new Error(message);
+      }
       setStatus('success');
+      setErrorMsg('');
     } catch (err) {
       setStatus('error');
+      setErrorMsg(err.message || 'Request failed');
     }
   };
 
   const handleChange = event => {
     const { name, value, type, checked } = event.target;
     setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
-    if (status !== 'idle') setStatus('idle');
+    if (status !== 'idle') {
+      setStatus('idle');
+      setErrorMsg('');
+    }
   };
 
   return (
@@ -321,7 +331,9 @@ export default function Home() {
                 {status === 'sending' ? 'Sending...' : 'Sign & Send Acceptance'}
               </button>
               {status === 'success' && <div className="status success">Sent! Check your email for a copy.</div>}
-              {status === 'error' && <div className="status error">There was a problem. Please try again.</div>}
+              {status === 'error' && (
+                <div className="status error">{errorMsg || 'There was a problem. Please try again.'}</div>
+              )}
             </div>
           </form>
         </section>

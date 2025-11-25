@@ -91,7 +91,7 @@ export async function POST(request) {
 
     const pdf = await buildPdf({ name, title, email, organization, message });
 
-    await resend.emails.send({
+    const { error: resendError } = await resend.emails.send({
       from: 'agreements@documents.revvit.io',
       to: [email, 'matthew@revvit.io'],
       subject: 'CCBM Phase 1 Acceptance',
@@ -103,6 +103,14 @@ export async function POST(request) {
         },
       ],
     });
+
+    if (resendError) {
+      console.error('Resend error', resendError);
+      return NextResponse.json(
+        { error: resendError.message || 'Email send failed. Check sender/domain or API key.' },
+        { status: 502 }
+      );
+    }
 
     return NextResponse.json({ ok: true });
   } catch (error) {
