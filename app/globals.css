@@ -452,6 +452,17 @@ li {
   text-align: center;
 }
 
+.sign-card h2 {
+  font-size: clamp(26px, 4vw, 34px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.sign-card .intro {
+  font-weight: 700;
+  color: var(--ink);
+}
+
 .sign-form {
   display: grid;
   gap: 14px;
