@@ -1,6 +1,64 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+'use client';
+
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 export default function Home() {
+  const [formData, setFormData] = useState({
+    name: '',
+    title: '',
+    email: '',
+    organization: '',
+    message: '',
+    agreed: false,
+  });
+  const [status, setStatus] = useState('idle'); // idle | sending | success | error
+
+  useEffect(() => {
+    const revealElements = Array.from(document.querySelectorAll('[data-reveal]'));
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18 }
+    );
+
+    revealElements.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const handleSubmit = async event => {
+    event.preventDefault();
+    if (!formData.name || !formData.email || !formData.agreed) {
+      setStatus('error');
+      return;
+    }
+    try {
+      setStatus('sending');
+      const res = await fetch('/api/sign', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error('Request failed');
+      setStatus('success');
+    } catch (err) {
+      setStatus('error');
+    }
+  };
+
+  const handleChange = event => {
+    const { name, value, type, checked } = event.target;
+    setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
+    if (status !== 'idle') setStatus('idle');
+  };
+
   return (
     <main>
       <div className="container">
@@ -37,7 +95,7 @@ export default function Home() {
           </div>
         </header>
 
-        <section className="hero card brand-hero">
+        <section className="hero card brand-hero" data-reveal="center">
           <div>
             <div className="eyebrow">Phase 1 scope</div>
             <h1>CCBM + Revvit: Rapid Broadcast Rebuild</h1>
@@ -46,9 +104,15 @@ export default function Home() {
               the path to OTT.
             </p>
             <div className="badges">
-              <div className="pill">Live + PWA Ready</div>
-              <div className="pill">Donor &amp; Sponsor Friendly</div>
-              <div className="pill">OTT-Ready Roadmap</div>
+              <div className="pill" data-reveal="left">
+                Live + PWA Ready
+              </div>
+              <div className="pill" data-reveal="right">
+                Donor &amp; Sponsor Friendly
+              </div>
+              <div className="pill" data-reveal="left">
+                OTT-Ready Roadmap
+              </div>
             </div>
             <div className="cta-row">
               <a className="button button-primary" href="#ready">
@@ -69,7 +133,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="card">
+        <section className="card" data-reveal>
           <div className="eyebrow">Why we’re here</div>
           <h2>Why CCBM Needs This Now</h2>
           <ul>
@@ -83,7 +147,7 @@ export default function Home() {
           </p>
         </section>
 
-        <section className="card">
+        <section className="card" data-reveal>
           <div className="eyebrow">What we will build</div>
           <h2>Phase 1: Live Experience</h2>
           <div className="deliverables">
@@ -124,7 +188,7 @@ export default function Home() {
           </p>
         </section>
 
-        <section className="card">
+        <section className="card" data-reveal>
           <div className="eyebrow">Why this will work</div>
           <h2>Clear story, clear asks, ready for what’s next</h2>
           <ul>
@@ -137,7 +201,7 @@ export default function Home() {
           </ul>
         </section>
 
-        <section className="card">
+        <section className="card" data-reveal>
           <div className="eyebrow">Future phases</div>
           <h2>Roadmap After This Proposal</h2>
           <div className="two-col">
@@ -166,7 +230,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="card">
+        <section className="card" data-reveal>
           <div className="eyebrow">Timeline</div>
           <h2>Timeline</h2>
           <div className="timeline">
@@ -194,7 +258,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="card">
+        <section className="card" data-reveal>
           <div className="eyebrow">Investment</div>
           <h2>Simple Pricing</h2>
           <div className="scope-grid">
@@ -219,7 +283,50 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="cta-footer card" id="ready">
+        <section className="card sign-card" data-reveal>
+          <div className="eyebrow">Sign &amp; Send</div>
+          <h2>Accept Phase 1 and kick off</h2>
+          <p className="muted">
+            Fill this out to send acceptance to CCBM + Revvit. You and our team will both receive a copy via email.
+          </p>
+          <form className="sign-form" onSubmit={handleSubmit}>
+            <div className="form-grid">
+              <label>
+                <span>Name *</span>
+                <input name="name" value={formData.name} onChange={handleChange} required />
+              </label>
+              <label>
+                <span>Title</span>
+                <input name="title" value={formData.title} onChange={handleChange} />
+              </label>
+              <label>
+                <span>Email *</span>
+                <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+              </label>
+              <label>
+                <span>Organization</span>
+                <input name="organization" value={formData.organization} onChange={handleChange} />
+              </label>
+            </div>
+            <label>
+              <span>Notes (optional)</span>
+              <textarea name="message" value={formData.message} onChange={handleChange} rows={3} />
+            </label>
+            <label className="agree">
+              <input type="checkbox" name="agreed" checked={formData.agreed} onChange={handleChange} />
+              <span>I accept the CCBM Phase 1 scope, pricing, and timeline described on this page.</span>
+            </label>
+            <div className="cta-row">
+              <button className="button button-primary" type="submit" disabled={status === 'sending'}>
+                {status === 'sending' ? 'Sending...' : 'Sign & Send Acceptance'}
+              </button>
+              {status === 'success' && <div className="status success">Sent! Check your email for a copy.</div>}
+              {status === 'error' && <div className="status error">There was a problem. Please try again.</div>}
+            </div>
+          </form>
+        </section>
+
+        <section className="cta-footer card" id="ready" data-reveal>
           <div className="eyebrow">Ready to begin?</div>
           <h2>Once you sign off on this page, we treat it as the official scope of work for Phase 1.</h2>
           <p>
