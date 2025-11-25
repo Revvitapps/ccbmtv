@@ -296,13 +296,8 @@ export default function Home() {
         <section className="card sign-card" data-reveal>
           <div className="eyebrow">Sign &amp; Send</div>
           <h2>Accept Phase 1 and kick off</h2>
-          <p className="muted">
+          <p className="muted intro">
             Fill this out to send acceptance to CCBM + Revvit. You and our team will both receive a copy via email.
-          </p>
-          <p className="muted small">
-            Legal: By submitting you agree to the Phase 1 scope, pricing, and timeline on this page, and acknowledge the
-            mutual NDA (confidentiality on business/data for 2 years) and that Revvit acts as an independent contractor.
-            Governing law: North Carolina.
           </p>
           <form className="sign-form" onSubmit={handleSubmit}>
             <div className="form-grid">
@@ -323,6 +318,11 @@ export default function Home() {
                 <input name="organization" value={formData.organization} onChange={handleChange} />
               </label>
             </div>
+            <p className="muted small legal-note">
+              Legal: By submitting you agree to the Phase 1 scope, pricing, and timeline on this page, and acknowledge
+              the mutual NDA (confidentiality on business/data for 2 years) and that Revvit acts as an independent
+              contractor. Governing law: North Carolina.
+            </p>
             <label>
               <span>Notes (optional)</span>
               <textarea name="message" value={formData.message} onChange={handleChange} rows={3} />

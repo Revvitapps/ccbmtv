@@ -444,6 +444,12 @@ li {
   background: #ffffff;
 }
 
+.sign-card .eyebrow,
+.sign-card h2,
+.sign-card .intro {
+  text-align: center;
+}
+
 .sign-form {
   display: grid;
   gap: 14px;
@@ -520,6 +526,15 @@ textarea:focus {
   color: #7b131d;
   background: rgba(235, 68, 90, 0.16);
   border: 1px solid rgba(235, 68, 90, 0.4);
+}
+
+.small {
+  font-size: 13px;
+}
+
+.legal-note {
+  text-align: center;
+  margin-top: 4px;
 }
 
 .button-primary {
