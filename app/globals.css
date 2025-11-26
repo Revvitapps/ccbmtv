@@ -554,6 +554,60 @@ textarea:focus {
   gap: 10px;
 }
 
+.admin-shell {
+  padding: 40px 20px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.admin-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 26px 28px;
+}
+
+.admin-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  margin: 24px 0;
+}
+
+.admin-card section {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  background: rgba(0, 24, 52, 0.02);
+}
+
+.copy-block {
+  margin-top: 24px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  background: #fafcff;
+}
+
+.copy-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.code {
+  background: #0f1a2f;
+  color: #f2f4ff;
+  padding: 14px;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-size: 13px;
+}
+.code pre {
+  margin: 0;
+  white-space: pre-wrap;
+}
 .button-primary {
   background: linear-gradient(130deg, #ffd15c 0%, #ffca22 100%);
   color: var(--navy);
