@@ -625,12 +625,16 @@ textarea:focus {
     color: #f2f4ff;
   }
 
+  body::before {
+    opacity: 0.1;
+  }
+
   .card,
   .sign-card,
   .legal-card {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.14);
-    color: #f2f4ff;
+    background: rgba(3, 8, 43, 0.78) !important;
+    border-color: rgba(255, 255, 255, 0.18);
+    color: #f2f4ff !important;
   }
 
   .sign-card h2,
@@ -646,8 +650,8 @@ textarea:focus {
 
   input,
   textarea {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.28);
     color: #f2f4ff;
   }
 
