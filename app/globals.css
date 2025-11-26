@@ -618,6 +618,51 @@ textarea:focus {
   margin: 0;
   white-space: pre-wrap;
 }
+
+@media (max-width: 768px) {
+  body {
+    background: linear-gradient(135deg, #03082b 0%, #0b0f2e 50%, #0e0158 100%);
+    color: #f2f4ff;
+  }
+
+  .card,
+  .sign-card,
+  .legal-card {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.14);
+    color: #f2f4ff;
+  }
+
+  .sign-card h2,
+  .sign-card .intro,
+  .sign-card label span,
+  .sign-card .muted,
+  .sign-card .legal-note,
+  .legal-card h2,
+  .legal-card .eyebrow,
+  .legal-card li {
+    color: #f2f4ff;
+  }
+
+  input,
+  textarea {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #f2f4ff;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: rgba(242, 244, 255, 0.6);
+  }
+
+  input:focus,
+  textarea:focus {
+    outline: 2px solid rgba(255, 209, 92, 0.42);
+    border-color: rgba(255, 209, 92, 0.55);
+    box-shadow: 0 0 0 3px rgba(255, 209, 92, 0.16), 0 8px 20px rgba(0, 0, 0, 0.18);
+  }
+}
 .button-primary {
   background: linear-gradient(130deg, #ffd15c 0%, #ffca22 100%);
   color: var(--navy);
