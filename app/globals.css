@@ -626,7 +626,9 @@ textarea:focus {
   }
 
   body::before {
-    opacity: 0.1;
+    opacity: 0.12;
+    background-size: 380px auto;
+    background-position: center 12%;
   }
 
   .card,
